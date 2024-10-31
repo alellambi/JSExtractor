@@ -1,10 +1,12 @@
 
 # Generador de Explotaciones
 
-**¡¡Antes de comenzar!! El script requiere de un archivo .docx como *template*. Lo buscará por defecto en la carpeta un nivel superior a la que aloja a *extractor.js*. Si queres cambiar su ubicación o su nombre, podes modificar el archivo **config.json** la propiedad *"templateFile"***
+**¡¡Antes de comenzar!!** El script requiere de un archivo .docx como *template*. Lo buscará por defecto en la carpeta un nivel superior a la que aloja a *extractor.js*. Si queres cambiar su ubicación o su nombre, podes modificar el archivo **config.json** la propiedad *"templateFile"*
 
 Ejecutar el script *extractor.js*. Se le solicitará el link de la noticia a extraer (***IMPORTANTE!** Solo funciona con los 4 medios principales*)
+
 Posteriormente se le solicitará el nombre que quiere ponersele al archivo a generar.
+
 El script se encargará de descargar y darle estilos a los elementos y guardarlos en un nuevo archivo .docx.
 
 Proyecto realizado utilizando Node v20.18
@@ -43,4 +45,4 @@ Dado que necesitaba ejecutar una funcion en cada una de las iteraciones, utilice
 
 #### Conclusión
 
-- NO USAR FOR EACH EN CASOS DE ASINCRONÍA
+- **NO USAR ForEach EN CASOS DE ASINCRONÍA**
