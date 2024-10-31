@@ -4,14 +4,14 @@ export function getSiteName(url) {
 	const regex = /www\.(.*?)\.com/;
 	const match = url.match(regex);
 	const result = match ? match[1].toUpperCase() : "";
-	return result || undefined;
+	if (!result) throw "\nERROR - Asegurate que el link sea correcto\n"
+	return result;
+	
 }
 
 export function getSiteConfig(site) {
-	try {
 		const config = webs[site];
+		if (!config) throw (`\nERROR - Web No Identificada entre las opciones\n`);
 		return config;
-	} catch {
-		throw new Error("Web No Identificada");
-	}
 }
+

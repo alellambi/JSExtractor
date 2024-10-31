@@ -1,3 +1,4 @@
+import config from "../config.json" with { type: "json" }
 import { writeFileSync, readFileSync } from "node:fs";
 import { fitImage } from "../utils/image.js";
 import {
@@ -57,10 +58,11 @@ export async function patchDocx(initialFile, patchData, fileNameData) {
 }
 
 export function addImageInArray(src) {
+	const width = config.imageWidth
 	const image = new ImageRun({
 		type: "jpg",
 		data: readFileSync(src),
-		transformation: fitImage(src),
+		transformation: fitImage(src, width),
 		floating: {
 			horizontalPosition: {
 				relative: HorizontalPositionRelativeFrom.PAGE,
@@ -87,35 +89,11 @@ export function addImageInArray(src) {
 
 export function addTextChildrenInArray(text, tag) {
 	if (text === "") return;
-	const stylesTable = {
-		H1: {
-			bold: true,
-			font: "Century Gothic",
-			size: 44,
-			allCaps: true,
-			underline: { type: "single", color: "000000" },
-		},
-		H2: {
-			font: "Century Gothic",
-			size: 30,
-			bold: true,
-		},
-		H3: {
-			font: "Century Gothic",
-			size: 24,
-		},
-		P: {
-			font: "Century Gothic",
-			size: 24,
-		},
-		FIGCAPTION: {
-			font: "Century Gothic",
-			size: 20,
-		},
-	};
+
+	const stylesTable = config.tagsStyle
 	let style = stylesTable[tag];
 	if (!style) return;
-
+	// console.log(style);
 	return new Paragraph({
 		children: [
 			new TextRun({

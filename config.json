@@ -1,0 +1,30 @@
+{
+    "tagsStyle": {
+        "H1": {
+            "bold": true,
+            "font": "Century Gothic",
+            "size": 44,
+            "allCaps": true,
+            "underline": { "type": "single", "color": "000000" }
+        },
+        "H2": {
+            "font": "Century Gothic",
+            "size": 30,
+            "bold": true
+        },
+        "H3": {
+            "font": "Century Gothic",
+            "size": 24
+        },
+        "P": {
+            "font": "Century Gothic",
+            "size": 24
+        },
+        "FIGCAPTION": {
+            "font": "Century Gothic",
+            "size": 20
+        }
+    },
+    "imageWidth": 500,
+    "templateFile": "../Explotaciones.docx"
+}

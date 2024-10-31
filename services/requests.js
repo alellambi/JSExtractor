@@ -9,8 +9,7 @@ export async function getRequest(url) {
 			return res.data;
 		})
 		.catch((error) => {
-			console.error(`Error cargando la noticia \n ${error}`);
-			process.exit(1);
+			throw "\nERROR - No se pudo obtener la noticia. \nAsegurate que el link sea correcto\n";
 		});
 }
 
