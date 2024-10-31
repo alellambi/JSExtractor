@@ -24,6 +24,7 @@
     "file-saver": "^2.0.5",
     "image-size": "^1.1.1",
     "node-html-parser": "^6.1.13",
+    "picocolors": "^1.1.1",
     "readline-sync": "^1.4.10"
   }
 }

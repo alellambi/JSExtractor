@@ -1,5 +1,6 @@
 import { parse } from "node-html-parser";
 import { addToArray } from "./patch-creator.js";
+import pc from "picocolors";
 
 export function htmlContainerParsing(response, config) {
 	const parsedContent = parse(response);
@@ -40,6 +41,7 @@ export async function searchNodes(contentArray, node, config) {
 	if (node.firstChild) {
 		const childrenArray = Array.from(node.childNodes);
 		for (const child of childrenArray) {
+			console.log(pc.blue(`Analizando elementos - ${child.tagName}`));
 			await searchNodes(contentArray, child, config);
 		}
 	}

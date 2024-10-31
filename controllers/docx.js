@@ -16,6 +16,7 @@ import {
 } from "docx";
 
 export async function patchDocx(initialFile, patchData, fileNameData) {
+	const fullPath = `../${fileNameData.fileDate} - ${fileNameData.title}.docx`
 	await patchDocument({
 		outputType: "nodebuffer",
 		data: initialFile,
@@ -53,8 +54,11 @@ export async function patchDocx(initialFile, patchData, fileNameData) {
 		},
 		keepOriginalStyles: true,
 	}).then((doc) => {
-		writeFileSync(`../${fileNameData.fileDate} - ${fileNameData.title}.docx`, doc);
+		writeFileSync(fullPath, doc);
+	}).catch((e) =>{
+		throw "\nERROR - El nombre elegido para el archivo no está disponible";
 	});
+	return fullPath
 }
 
 export function addImageInArray(src) {

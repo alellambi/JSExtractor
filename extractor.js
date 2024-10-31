@@ -6,13 +6,14 @@ import { getSiteConfig, getSiteName } from "./controllers/site-data.js";
 import { getRequest } from "./services/requests.js";
 import { getDate } from "./utils/date.js";
 
+import pc from "picocolors"
 import { readFileSync } from "node:fs";
 import { question } from "readline-sync";
 
 async function startApp() {
 	let contentArray = [];
   try {
-    console.log("POR EL MOMENTO SOLO INFOBAE - LA NACION - PAGINA 12 - CLARIN");
+    console.log(pc.green("\nPOR EL MOMENTO SOLO INFOBAE - LA NACION - PAGINA 12 - CLARIN"))
   
     const url = question("Ingrese el enlace de la noticia: ");
   
@@ -40,12 +41,22 @@ async function startApp() {
     const container = htmlContainerParsing(response, siteConfig);
     await searchNodes(contentArray, container, siteConfig);
     const patchData = { textDate, url, contentArray };
-    const fileNameData = { fileDate, title };
+    let fileNameData = { fileDate, title };
     const initialFile = readFileSync(config.templateFile);
-  
-    await patchDocx(initialFile, patchData, fileNameData);
+    let fullPath
+    do {
+      try {
+        fullPath =await patchDocx(initialFile, patchData, fileNameData);
+      } catch (error) {
+        console.error(pc.red(error))
+        fileNameData.title = question(`Ingrese otro titulo para el archivo: ${fileDate} - `).toUpperCase();
+        // const fullPath = await patchDocx(initialFile, patchData, fileNameData)
+      }
+    } while (!fullPath)
+    // console.log(fullPath)
+    console.log(pc.bgCyan(pc.bold(`\n${fileNameData.fileDate} - ${fileNameData.title}.docx generado exitosamente`)))
   } catch (error) {
-    console.log(error) }
+    console.error(pc.red(error)) }
   finally {
     startApp()
   }

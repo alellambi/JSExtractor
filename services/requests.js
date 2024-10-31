@@ -19,7 +19,7 @@ export async function downloadImage(url) {
 		mkdirSync(folderPath);
 	}
 
-	console.log(`Descargando ${url}`);
+	// console.log(`Descargando ${url}`);
 
 	const response = await axios({ url, responseType: "arraybuffer" });
 	writeFileSync(folderPath, response.data);
